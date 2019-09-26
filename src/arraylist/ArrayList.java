@@ -1,4 +1,4 @@
-package arrayList;
+package arraylist;
 
 /**
  * Data structure based around an internal array that grows/shrinks depending on
@@ -95,5 +95,5 @@ public interface ArrayList<T> {
 	 * @param item to be found
 	 * @return int containing the array, or -1 if not
 	 */
-	public T find(T item);
+	public int find(T item);
 }

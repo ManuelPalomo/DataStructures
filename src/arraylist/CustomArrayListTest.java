@@ -1,4 +1,4 @@
-package arrayList;
+package arraylist;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -39,7 +39,7 @@ class CustomArrayListTest {
 		Integer itemToInsert = 1;
 		testArrayList.push(itemToInsert);
 		assertEquals(itemToInsert, testArrayList.get(0));
-		assertThrows(ArrayIndexOutOfBoundsException.class, () -> testArrayList.get(500));
+		assertThrows(IndexOutOfBoundsException.class, () -> testArrayList.get(500));
 	}
 
 	@Test
@@ -53,7 +53,38 @@ class CustomArrayListTest {
 
 	@Test
 	public void insertTest() {
-		fail();
+		CustomArrayList<Integer> testArrayList = new CustomArrayList<>();
+		Integer itemToInsert = 1;
+		testArrayList.push(2);
+		testArrayList.push(3);
+		testArrayList.push(4);
+		testArrayList.insert(2, itemToInsert);
+
+		assertEquals(itemToInsert, testArrayList.get(2));
+		assertEquals(4, testArrayList.get(3));
+		assertEquals(4, testArrayList.size());
+		assertThrows(IndexOutOfBoundsException.class, () -> testArrayList.insert(500, itemToInsert));
+
+		CustomArrayList<Integer> testArrayListInsertAtZero = new CustomArrayList<>();
+		testArrayListInsertAtZero.push(2);
+		testArrayListInsertAtZero.push(3);
+		testArrayListInsertAtZero.push(4);
+		testArrayListInsertAtZero.insert(0, itemToInsert);
+
+		assertEquals(itemToInsert, testArrayListInsertAtZero.get(0));
+		assertEquals(2, testArrayListInsertAtZero.get(1));
+		assertEquals(4, testArrayListInsertAtZero.size());
+
+		CustomArrayList<Integer> testArrayListInsertAtEnd = new CustomArrayList<>();
+		testArrayListInsertAtEnd.push(2);
+		testArrayListInsertAtEnd.push(3);
+		testArrayListInsertAtEnd.push(4);
+		testArrayListInsertAtEnd.insert(3, itemToInsert);
+
+		assertEquals(itemToInsert, testArrayListInsertAtEnd.get(3));
+		assertEquals(4, testArrayListInsertAtEnd.get(2));
+		assertNull(testArrayListInsertAtEnd.get(5));
+		assertEquals(4, testArrayListInsertAtEnd.size());
 	}
 
 	@Test
@@ -80,9 +111,18 @@ class CustomArrayListTest {
 	public void deleteTest() {
 		CustomArrayList<Integer> testArrayList = new CustomArrayList<>();
 		testArrayList.push(1);
-		assertThrows(ArrayIndexOutOfBoundsException.class, () -> testArrayList.delete(500));
-		testArrayList.delete(0);
+		assertThrows(IndexOutOfBoundsException.class, () -> testArrayList.delete(500));
+		assertEquals(1, testArrayList.delete(0));
 		assertEquals(0, testArrayList.size());
+
+		CustomArrayList<Integer> testArrayListDeleteEnd = new CustomArrayList<>();
+		testArrayListDeleteEnd.push(1);
+		testArrayListDeleteEnd.push(2);
+		testArrayListDeleteEnd.push(3);
+		testArrayListDeleteEnd.push(4);
+		assertEquals(4, testArrayListDeleteEnd.delete(3));
+		assertEquals(3, testArrayListDeleteEnd.size());
+
 	}
 
 	@Test
