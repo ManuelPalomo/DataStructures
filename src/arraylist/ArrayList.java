@@ -2,11 +2,14 @@ package arraylist;
 
 /**
  * Data structure based around an internal array that grows/shrinks depending on
- * the needs performing as a List
+ * the needs. All the elements are kept contiguous in memory
  * 
  * The internal starting capacity revolves around multiples, if not specified in
  * the constructor, the starting capacity is 16 and if this capacity is
  * exceeded, the next capacity is going to be starting capacity ^ 2
+ * 
+ * When elements are popped/deleted, if the remaining size is 1/4 of the initial capacity
+ * it should be reduced to half capacity.
  * 
  * @param <T>
  */
