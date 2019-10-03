@@ -74,10 +74,15 @@ class TailPointerLinkedListTest {
 		TailPointerLinkedList<Integer> testLinkedList = new TailPointerLinkedList<>();
 		testLinkedList.append(1);
 		testLinkedList.append(2);
+		testLinkedList.append(3);
+
+		assertEquals(3, testLinkedList.pop());
+		assertEquals(2, testLinkedList.size());
 		assertEquals(2, testLinkedList.pop());
 		assertEquals(1, testLinkedList.size());
 		assertEquals(1, testLinkedList.pop());
 		assertTrue(testLinkedList.empty());
+
 	}
 
 	@Test
