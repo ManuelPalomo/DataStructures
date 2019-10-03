@@ -111,7 +111,7 @@ public interface LinkedList<T> {
 	 * @throws IndexOutOfBoundsException if the number exceeds the total number of
 	 *                                   elements in the LinkedList
 	 */
-	public T valueNFronEnd(int number);
+	public T valueNFromEnd(int number);
 
 	/**
 	 * Removes the first occurrence of specified item
