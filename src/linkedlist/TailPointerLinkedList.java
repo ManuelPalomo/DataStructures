@@ -15,10 +15,6 @@ public class TailPointerLinkedList<T> implements LinkedList<T> {
 			return value;
 		}
 
-		public void setValue(T value) {
-			this.value = value;
-		}
-
 		public Node<T> getNext() {
 			return next;
 		}
@@ -83,7 +79,7 @@ public class TailPointerLinkedList<T> implements LinkedList<T> {
 			newNode = new Node<>(item, null);
 			head = tail = newNode;
 		} else {
-			newNode = new Node<>(item, head.next);
+			newNode = new Node<>(item, head);
 			head = newNode;
 		}
 		size++;
@@ -198,7 +194,7 @@ public class TailPointerLinkedList<T> implements LinkedList<T> {
 		Node<T> actualPointer;
 		Node<T> nextPointer;
 
-		previousPointer = nextPointer = null;
+		previousPointer = null;
 		actualPointer = this.head;
 		this.tail = this.head;
 		while (actualPointer != null) {
@@ -213,13 +209,26 @@ public class TailPointerLinkedList<T> implements LinkedList<T> {
 
 	@Override
 	public T valueNFromEnd(int number) {
-		// TODO Auto-generated method stub
-		return null;
+		if (size() - number < 0) {
+			throw new IndexOutOfBoundsException();
+		}
+		Node<T> pointer = this.head;
+		for (int i = 0; i < size - number - 1; i++) {
+			pointer = pointer.getNext();
+		}
+		return pointer.getValue();
 	}
 
 	@Override
 	public void removeItem(T item) {
-		// TODO Auto-generated method stub
+		Node<T> pointer = this.head;
+		for (int i = 0; i < this.size - 1; i++) {
+			if (pointer.value.equals(item)) {
+				this.remove(i);
+				break;
+			}
+			pointer = pointer.getNext();
+		}
 	}
 
 }

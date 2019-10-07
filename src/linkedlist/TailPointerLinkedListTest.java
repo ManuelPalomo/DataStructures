@@ -82,7 +82,6 @@ class TailPointerLinkedListTest {
 		assertEquals(1, testLinkedList.size());
 		assertEquals(1, testLinkedList.pop());
 		assertTrue(testLinkedList.empty());
-
 	}
 
 	@Test
