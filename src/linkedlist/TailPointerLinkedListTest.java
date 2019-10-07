@@ -110,6 +110,7 @@ class TailPointerLinkedListTest {
 		assertEquals(3, testLinkedList.size());
 		assertEquals(3, testLinkedList.get(1));
 		assertEquals(2, testLinkedList.get(2));
+		assertEquals(2, testLinkedList.back());
 		assertThrows(IndexOutOfBoundsException.class, () -> testLinkedList.insert(100, 1));
 	}
 

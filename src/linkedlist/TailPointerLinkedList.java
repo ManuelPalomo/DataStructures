@@ -141,31 +141,73 @@ public class TailPointerLinkedList<T> implements LinkedList<T> {
 
 	@Override
 	public T front() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.head.value;
 	}
 
 	@Override
 	public T back() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.tail.value;
 	}
 
 	@Override
 	public void insert(int index, T item) {
-		// TODO Auto-generated method stub
+		if (!isIndexValid(index)) {
+			throw new IndexOutOfBoundsException();
+		} else {
+			Node<T> pointer = this.head;
+			for (int i = 0; i < index - 1; i++) {
+				pointer = pointer.getNext();
+			}
+			Node<T> insertedNode = new Node<>(item, pointer.next);
+			pointer.setNext(insertedNode);
+			size++;
 
+			if (this.size - 1 == index) {
+				this.tail = insertedNode;
+			}
+		}
 	}
 
 	@Override
 	public T remove(int index) {
-		// TODO Auto-generated method stub
-		return null;
+		if (!isIndexValid(index)) {
+			throw new IndexOutOfBoundsException();
+		}
+
+		if (index == 0) {
+			return popFirst();
+		}
+
+		if (index == this.size - 1) {
+			return pop();
+		}
+		Node<T> pointer = this.head;
+		for (int i = 0; i < index - 1; i++) {
+			pointer = pointer.getNext();
+		}
+		T removedElement = pointer.getNext().getValue();
+		pointer.setNext(pointer.getNext().getNext());
+		size--;
+		return removedElement;
+
 	}
 
 	@Override
 	public void reverse() {
-		// TODO Auto-generated method stub
+		Node<T> previousPointer;
+		Node<T> actualPointer;
+		Node<T> nextPointer;
+
+		previousPointer = nextPointer = null;
+		actualPointer = this.head;
+		this.tail = this.head;
+		while (actualPointer != null) {
+			nextPointer = actualPointer.getNext();
+			actualPointer.setNext(previousPointer);
+			previousPointer = actualPointer;
+			actualPointer = nextPointer;
+		}
+		this.head = previousPointer;
 
 	}
 
