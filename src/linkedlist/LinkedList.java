@@ -6,7 +6,7 @@ package linkedlist;
  * the next node, and a value. The structure is used by providing a pointer to
  * the first node.
  * 
- * All index starts at 0.
+ * All indexes starts at 0.
  *
  * @param <T>
  */
