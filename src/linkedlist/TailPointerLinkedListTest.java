@@ -87,6 +87,7 @@ class TailPointerLinkedListTest {
 	@Test
 	void frontTest() {
 		TailPointerLinkedList<Integer> testLinkedList = new TailPointerLinkedList<>();
+		assertEquals(null,testLinkedList.front());
 		testLinkedList.append(1);
 		testLinkedList.append(2);
 		assertEquals(1, testLinkedList.front());
@@ -95,6 +96,7 @@ class TailPointerLinkedListTest {
 	@Test
 	void backTest() {
 		TailPointerLinkedList<Integer> testLinkedList = new TailPointerLinkedList<>();
+		assertEquals(null,testLinkedList.back());
 		testLinkedList.append(1);
 		testLinkedList.append(2);
 		assertEquals(2, testLinkedList.back());
@@ -157,7 +159,7 @@ class TailPointerLinkedListTest {
 		testLinkedList.append(4);
 		testLinkedList.removeItem(3);
 		assertEquals(3, testLinkedList.size());
-		assertEquals(3, testLinkedList.get(3));
+		assertEquals(4, testLinkedList.get(2));
 	}
 
 }
