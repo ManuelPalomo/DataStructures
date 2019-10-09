@@ -11,26 +11,22 @@ public class LinkedListQueue<T> implements Queue<T> {
 
 	@Override
 	public void enqueue(T value) {
-		// TODO Auto-generated method stub
-
+		this.linkedList.append(value);
 	}
 
 	@Override
 	public T dequeue() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.linkedList.popFirst();
 	}
 
 	@Override
 	public boolean empty() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.linkedList.empty();
 	}
 
 	@Override
 	public T peek() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.linkedList.front();
 	}
 
 }

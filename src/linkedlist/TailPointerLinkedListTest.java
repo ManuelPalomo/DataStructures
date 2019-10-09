@@ -153,6 +153,7 @@ class TailPointerLinkedListTest {
 	@Test
 	void removeItemTest() {
 		TailPointerLinkedList<Integer> testLinkedList = new TailPointerLinkedList<>();
+		testLinkedList.removeItem(100);
 		testLinkedList.append(1);
 		testLinkedList.append(2);
 		testLinkedList.append(3);

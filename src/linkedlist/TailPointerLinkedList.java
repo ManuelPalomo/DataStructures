@@ -229,7 +229,7 @@ public class TailPointerLinkedList<T> implements LinkedList<T> {
 	public void removeItem(T item) {
 		Node<T> pointer = this.head;
 		for (int i = 0; i < this.size - 1; i++) {
-			if (pointer != null && pointer.value.equals(item)) {
+			if (pointer.value.equals(item)) {
 				this.remove(i);
 				break;
 			}
