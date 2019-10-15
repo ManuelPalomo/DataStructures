@@ -2,28 +2,6 @@ package linkedlist;
 
 public class TailPointerLinkedList<T> implements LinkedList<T> {
 
-	private class Node<T> {
-		private T value;
-		private Node<T> next;
-
-		public Node(T value, Node<T> next) {
-			this.value = value;
-			this.next = next;
-		}
-
-		public T getValue() {
-			return value;
-		}
-
-		public Node<T> getNext() {
-			return next;
-		}
-
-		public void setNext(Node<T> next) {
-			this.next = next;
-		}
-	}
-
 	private int size;
 	private Node<T> head;
 	private Node<T> tail;
@@ -51,19 +29,19 @@ public class TailPointerLinkedList<T> implements LinkedList<T> {
 		}
 
 		if (index == 0) {
-			return this.head.value;
+			return this.head.getValue();
 		}
 
 		if (index == this.size - 1) {
-			return this.tail.value;
+			return this.tail.getValue();
 		}
 
 		Node<T> pointer = this.head;
 		for (int i = 0; i < size; i++) {
 			if (index == i) {
-				return pointer.value;
+				return pointer.getValue();
 			}
-			pointer = pointer.next;
+			pointer = pointer.getNext();
 		}
 		return null;
 	}
@@ -96,12 +74,12 @@ public class TailPointerLinkedList<T> implements LinkedList<T> {
 		if (this.size == 1) {
 			this.head = this.tail = null;
 			size--;
-			return poppedItem.value;
+			return poppedItem.getValue();
 		}
 
-		head = head.next;
+		head = head.getNext();
 		size--;
-		return poppedItem.value;
+		return poppedItem.getValue();
 
 	}
 
@@ -112,7 +90,7 @@ public class TailPointerLinkedList<T> implements LinkedList<T> {
 			this.head = this.tail = nodeToAppend;
 			size++;
 		} else {
-			this.tail.next = nodeToAppend;
+			this.tail.setNext(nodeToAppend);
 			this.tail = nodeToAppend;
 			size++;
 		}
@@ -126,12 +104,12 @@ public class TailPointerLinkedList<T> implements LinkedList<T> {
 			Node<T> poppedItem = this.tail;
 			Node<T> pointer = this.head;
 			for (int i = 0; i < this.size() - 2; i++) {
-				pointer = pointer.next;
+				pointer = pointer.getNext();
 			}
 			this.tail = pointer;
 			pointer.setNext(null);
 			size--;
-			return poppedItem.value;
+			return poppedItem.getValue();
 		}
 	}
 
@@ -140,7 +118,7 @@ public class TailPointerLinkedList<T> implements LinkedList<T> {
 		if (this.empty()) {
 			return null;
 		}
-		return this.head.value;
+		return this.head.getValue();
 	}
 
 	@Override
@@ -148,7 +126,7 @@ public class TailPointerLinkedList<T> implements LinkedList<T> {
 		if (this.empty()) {
 			return null;
 		}
-		return this.tail.value;
+		return this.tail.getValue();
 	}
 
 	@Override
@@ -160,7 +138,7 @@ public class TailPointerLinkedList<T> implements LinkedList<T> {
 			for (int i = 0; i < index - 1; i++) {
 				pointer = pointer.getNext();
 			}
-			Node<T> insertedNode = new Node<>(item, pointer.next);
+			Node<T> insertedNode = new Node<>(item, pointer.getNext());
 			pointer.setNext(insertedNode);
 			size++;
 
@@ -229,7 +207,7 @@ public class TailPointerLinkedList<T> implements LinkedList<T> {
 	public void removeItem(T item) {
 		Node<T> pointer = this.head;
 		for (int i = 0; i < this.size - 1; i++) {
-			if (pointer.value.equals(item)) {
+			if (pointer.getValue().equals(item)) {
 				this.remove(i);
 				break;
 			}
