@@ -1,7 +1,5 @@
 package hashtable;
 
-import java.util.function.BiConsumer;
-
 public class LinearProbingHashTable<K, V> implements HashTable<K, V> {
 	private static final int DEFAULT_INITIAL_CAPACITY = 16;
 	private static final float DEFAULT_LOAD_FACTOR = 0.75f;
@@ -119,8 +117,30 @@ public class LinearProbingHashTable<K, V> implements HashTable<K, V> {
 
 	@Override
 	public void remove(K key) {
-		// TODO Auto-generated method stub
+		int bucketDestination = this.hash(key, this.buckets);
+		for (int i = 0; i < this.buckets - bucketDestination; i++) {
+			if (this.table[bucketDestination] == null) {
+				return;
+			}
+			if (this.table[bucketDestination].getKey().equals(key)) {
+				this.table[bucketDestination] = null;
+				this.realignTable(bucketDestination);
+				this.occupiedCells--;
+				return;
+			}
+		}
+	}
 
+	private void realignTable(int bucketDestination) {
+		if (this.table[bucketDestination + 1] == null) {
+			return;
+		}
+		for (int i = 1; i < this.buckets - bucketDestination; i++) {
+			if (this.table[bucketDestination + i] == null) {
+				return;
+			}
+			this.table[bucketDestination + (i - 1)] = this.table[bucketDestination + i];
+		}
 	}
 
 	protected Entry<K, V>[] getTable() {
